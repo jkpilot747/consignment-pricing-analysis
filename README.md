@@ -2,9 +2,9 @@
 
 ## Overview
 
-I wanted to know what actually sells at the store I work at, and how long it takes. The short answer: an item's best shot is its first month. Almost 4 in 10 pieces sell in 30 days. After six months on the floor the odds drop to about 4% a month, and the longer something sits, the less of its tag it brings in.
+I wanted to know what actually sells at the store I work at, and how long it takes. The short answer: an item's best chance of selling is its first month. Almost 4 in 10 pieces sell in 30 days. After six months on the floor the odds drop to about 4% a month, and the longer something sits, the less of its tag it brings in.
 
-The store is a furniture and antiques consignment shop where I run e-commerce and operations, so I see what sits on the floor every day. I've left its name out. For this project I pulled 17 years of point-of-sale data out of Liberty Consignment POS (85,436 rows, 2009 to September 2026) and tried to answer two questions:
+The store is a furniture and antiques consignment shop where I run e-commerce and operations, so I see what sits on the floor and what comes in every day. For this project I pulled 17 years of point-of-sale data out of Liberty Consignment POS (85,436 rows, 2009 to September 2026) and tried to answer two questions:
 
 1. How fast do things sell, and what does waiting cost in price?
 2. Can we predict sale price and time to sell when an item comes in? (next project)
@@ -79,7 +79,7 @@ Some bulk buys (multi-quantity entries) are excluded, and pieces that were never
 
 ## What happened next
 
-I shared these findings with the owner. He's going to focus more on the fastest-selling categories when he's sourcing, and be even pickier about the slow ones.
+I shared these findings with the owner. He's going to focus more on the fastest-selling categories when he's sourcing, and be pickier about the slow ones.
 
 To see if that actually changes anything, I'm tracking it against a baseline. For the last three years, about 20% of what came in each year was from the fast categories (sectionals, sofas, dressers, bookcases, credenzas, sideboards, nightstands and desks) and about 20% was from the slow ones (art, rugs, ottomans, ceramics, lighting and mirrors). I'll check intake again in December, and sell-through at 30 and 90 days in February.
 
