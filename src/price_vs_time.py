@@ -42,12 +42,12 @@ if __name__ == "__main__":
     sold = load_sold()
     print(f"{len(sold):,} items sold, received {START} or later\n")
 
-    overall = sold.groupby("days_bucket", observed=True).apply(summarize)
+    overall = sold.groupby("days_bucket", observed=True).apply(summarize, include_groups=False)
     print("Sold price as % of tag, by days on the floor")
     print(overall.round(1).to_string(), "\n")
 
     for src, grp in sold.groupby("source"):
-        t = grp.groupby("days_bucket", observed=True).apply(summarize)
+        t = grp.groupby("days_bucket", observed=True).apply(summarize, include_groups=False)
         print(f"{src}")
         print(t[["items", "avg_pct_of_tag", "share_at_full_price"]].round(1).to_string(), "\n")
 

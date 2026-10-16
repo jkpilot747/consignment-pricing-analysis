@@ -38,7 +38,7 @@ def summarize(df):
 
 
 def by_group(cohort, key, min_items):
-    t = cohort.groupby(key, observed=True).apply(summarize)
+    t = cohort.groupby(key, observed=True).apply(summarize, include_groups=False)
     return t[t["items"] >= min_items].sort_values("sold_90d", ascending=False)
 
 

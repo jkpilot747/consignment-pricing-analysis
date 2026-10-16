@@ -46,7 +46,7 @@ def expect_04():
 
 def expect_05():
     sold = load_sold()
-    t = sold.groupby("days_bucket", observed=True).apply(price_summary).reset_index()
+    t = sold.groupby("days_bucket", observed=True).apply(price_summary, include_groups=False).reset_index()
     t["days_bucket"] = t.days_bucket.astype(str)
     return t[["days_bucket", "items", "avg_pct_of_tag"]]
 
