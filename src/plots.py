@@ -100,8 +100,8 @@ def ranked_bars(t, name_col, fname, main, sub, baseline, color_by_new=False):
     ax.tick_params(axis="y", length=0)
     if color_by_new:
         from matplotlib.patches import Patch
-        ax.legend(handles=[Patch(color=BLUE, label="Mostly consignment / used"),
-                           Patch(color=ORANGE, label="Mostly new vendor stock")],
+        ax.legend(handles=[Patch(color=BLUE, label="Mostly consigned"),
+                           Patch(color=ORANGE, label="Mostly store stock (owned or vendor)")],
                   frameon=False, loc="lower right")
     title(ax, main, sub)
     fig.savefig(f"{OUT}/{fname}"); plt.close(fig)

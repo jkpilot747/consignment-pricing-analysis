@@ -2,18 +2,18 @@
 
 ## Overview
 
-I wanted to know what actually sells at the store I work at, and how long it takes. The short answer: an item's best chance of selling is its first month. Almost 4 in 10 pieces sell in 30 days. After six months on the floor the odds drop to about 4% a month, and the longer something sits, the less of its tag it brings in.
+I wanted to know what sells at the store I work at, and how long that usually takes. In short, an item's best chance of selling is its first month. Almost 4 in 10 pieces sell in 30 days. After six months on the floor the odds drop to about 4% a month, and the longer something sits, the less of its tag it brings in.
 
-The store is a furniture and antiques consignment shop where I run e-commerce and operations, so I see what sits on the floor and what comes in every day. For this project I pulled 17 years of point-of-sale data out of Liberty Consignment POS (85,436 rows, 2009 to September 2026) and tried to answer two questions:
+The store is a furniture and antiques consignment shop where I run e-commerce and operations, so I see what sits on the floor and what comes in every day. For this project I pulled 17 years of point-of-sale data out of Liberty Consignment POS (85,436 rows, 2009 to September 2026) and tried to answer two big questions:
 
 1. How fast do things sell, and what does waiting cost in price?
-2. Can we predict sale price and time to sell when an item comes in? (next project)
+2. Can we predict sale price and time to sell when an item comes in? (the next part of this project)
 
 I cleaned the data in Python, checked my main numbers in SQL, made the charts in matplotlib, and built a simple dashboard so the owner could see the results.
 
 ## Data and method
 
-Most of the numbers below use the 7,489 items that came in from January 2021 on and have had at least a year to sell. I started at 2021 so the results reflect how the store runs now, not how it ran in 2010.
+Most of the numbers below use the 7,489 items that came in from January 2021 on and have had at least a year to sell. I started at 2021 so the results reflect how the store runs now, not how it ran before covid.
 
 Getting there took more cleaning than I expected.
 
@@ -25,7 +25,7 @@ To check my work, I loaded the clean data into SQLite and rewrote the main count
 
 One thing I had to be careful about: the raw export has consignor names, and some item descriptions have customer phone numbers and emails in them. So consignor IDs are hashed, names are dropped, and none of the row-level data is public. The repo only has code and charts.
 
-Tools: Python (pandas, matplotlib) and SQL (SQLite).
+Tools: Python (pandas, matplotlib) and SQL (SQLite). I used Claude to write most of the Python. The questions, the cleaning decisions and this writeup are mine.
 
 ## Finding 1: the first month matters most
 
@@ -55,11 +55,11 @@ Big furniture sells fastest and art sells slowest. Sectionals were the top categ
 
 ![What sells fast, by category](outputs/figures/4_by_category.png)
 
-Fine art, framed art and misc. art were all under 40% within 90 days. Rugs, ottomans, ceramics and lighting were under 50% too. Most of the art is consigned (79% to 98%), so it's mainly consignors' pieces sitting, not the store's. That lines up with what the owner already does: he rarely buys art for the store because it doesn't move on the floor.
+Fine art, framed art and misc. art were all under 40% within 90 days. Rugs, ottomans, ceramics and lighting were under 50% too. Most of the art is consigned (64% to 89%), so it's mainly consignors' pieces sitting, not the store's. That lines up with what the owner already does: he rarely buys art for the store because it doesn't move on the floor.
 
 Price mattered less than I expected. Across most price ranges, items sell at about the same rate (54% to 61% within 90 days). Only the most expensive pieces are slower: 27% sell in the first 30 days, compared with about 40% for everything else. Cheaper items also hold their tag better: the cheapest pieces sell for 94% of tag on average, the most expensive for 85%.
 
-For brands, the mainstream contemporary names sell fastest: West Elm 84%, Crate & Barrel 83%, Article 82% and Room & Board 75% within 90 days. Timothy Oulton, Muuto, Gus Modern, Knoll and Restoration Hardware were all around 50% or lower. Article, Blu Dot, Gus and Muuto are mostly new vendor stock, not consignment (orange in the chart).
+For brands, the mainstream contemporary names sell fastest: West Elm 84%, Crate & Barrel 83%, Article 82% and Room & Board 75% within 90 days. Timothy Oulton, Muuto, Gus Modern, Knoll and Restoration Hardware were all around 50% or lower. Article, Blu Dot, Muuto and Timothy Oulton are mostly the store's own stock, and Gus is mostly new vendor stock. All five are orange in the chart.
 
 ![What sells fast, by brand](outputs/figures/5_by_brand.png)
 
@@ -75,7 +75,7 @@ Markdowns sometimes change the tag. When a tag price gets lowered in the system,
 
 Some pieces are entered at the register. This is often because the item sold so soon after it came in that there wasn't time to print a tag. For those I don't know how long they were really on the floor, so anything sold within 15 minutes of being entered is left out of the timing numbers.
 
-Some bulk buys (multi-quantity entries) are excluded, and pieces that were never closed out in the system count as unsold, which probably makes the sell rates a little low. A few vendor and store accounts are also labeled as consignors in the system. I fixed the ones I could identify, but since a few could still be wrong, I didn't compare consigned items to store-owned ones.
+Some bulk buys (multi-quantity entries) are excluded, and pieces that were never closed out in the system count as unsold, which probably makes the sell rates a little low. A few vendor and store accounts are also labeled as consignors in the system, and the owner enters some of his own stock under other account numbers. I relabeled the main ones with his help, which covers about 18,000 of his roughly 20,000 items. Since the split still isn't exact, I didn't compare consigned items to store-owned ones.
 
 ## What happened next
 

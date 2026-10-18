@@ -34,6 +34,7 @@ def summarize(df):
         "avg_pct_of_tag": sold.realized.clip(0, 1.2).mean() * 100,
         "median_tag": df.price.median(),
         "pct_consignment": (df.source == "Consignment").mean() * 100,
+        "pct_vendor": (df.source == "New (vendor)").mean() * 100,
     })
 
 
