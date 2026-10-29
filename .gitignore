@@ -1,0 +1,13 @@
+# Nothing row-level goes public. The raw export has consignor names, and item
+# descriptions include customer names, phone numbers and emails.
+data/
+*.db
+# Dashboard was a one-off for the owner; the public write-up is the report.
+dashboard/
+.DS_Store
+__pycache__/
+.ipynb_checkpoints/
+# Private working notes (business details, owner's answers)
+CLAUDE.md
+# Summary tables include price information; only the charts are published.
+outputs/*.csv
